@@ -652,6 +652,39 @@ input[type="date"] {
 	padding-right: 10px;
 }
 /*BUTTON*/
+.transparent-btn {
+  border: 2px solid #3179CC;
+  color: #3179CC;
+  background: rgba(255, 255, 255, 0.0);
+  height: initial;
+  width: initial;
+  position: initial;
+  outline: none;
+  padding: 15px 40px;
+}
+.transparent-btn::before {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #33ccff;
+  transform-origin: center right;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.transparent-btn:hover {
+  cursor: pointer;
+}
+
+.transparent-btn:hover::before {
+  transform-origin: center left;
+  transform: scaleX(1);
+}
+
 button {
 	background: #3179CC;
 	color: #fff;
@@ -663,7 +696,6 @@ button {
 	align-items: center;
 	justify-content: center;
 	font-weight: 900;
-  	text-transform: uppercase;
   	font-size: inherit;
   	font-family: inherit;
 }
@@ -1008,6 +1040,80 @@ button img {
 }
 
 /* TREKKING */
+.title {
+	font-weight: 700;
+	position: relative;
+	line-height: 1;
+	display: inline-block;
+	transition: color 0.5s 0.25s;
+	overflow: hidden;
+	font-family: 'Montserrat', sans-serif;
+	margin: 0;
+	color: black;
+	font-size: 96px;
+
+  &.active {
+    transition: none;
+	  color: transparent;
+  }
+}
+
+.title  span {
+  position: absolute;
+	height: 50%;
+	width: 100%;
+	left: 0;
+	top: 0;
+	overflow: hidden;
+}
+
+.title span::before {
+    content: attr(data-letters);
+	position: absolute;
+	left: 0;
+	width: 100%;
+	color: #fff;
+	transition: transform .8s ease-out;
+}
+
+.title::before {
+	content: '';
+	width: 100%;
+	height: 6px;
+	margin: -3px 0 0 0;
+	background: #fff;
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translate3d(-100%,0,0);
+	transition: transform 0.4s;
+	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+
+.title.active::before {
+	transform: translate3d(100%,0,0);
+}
+
+.title span:nth-child(2) {
+	top: 50%;
+}
+
+.title span:first-child::before {
+	top: 0;
+	transform: translate3d(0,100%,0);
+}
+
+.title span:nth-child(2)::before {
+	bottom: 0;
+	transform: translate3d(0,-100%,0);
+}
+
+.title.active span::before {
+	transition-delay: 0.3s;
+	transform: translate3d(0,0,0);
+	transition-timing-function: cubic-bezier(0.2,1,0.3,1);
+}
+
 .main__trekking {
 	min-height: 550px;
 	background-image: linear-gradient(180deg, rgba(68, 68, 68, 0.3) 9.42%,rgba(0, 0, 0, 0.1) 15.67%),url(../images/trekking/059f3599fcea70f0f97191581daedfb7.jpg);
@@ -1023,6 +1129,8 @@ button img {
 }
 
 .trekking {
+	font-weight: 600;
+	font-family: 'Montserrat', sans-serif;
 	position: absolute;
     width: 75%;
     top: 50%;
@@ -1033,17 +1141,12 @@ button img {
     margin: 0;
     transition: all 0.3s ease;
 }
-.trekking__title {
-	color: #fff;
-	font-size: 96px;
-	font-weight: 700;
-	transition: all 0.3s ease;
-}
 .first__tour {
 	background-image: url("../images/trekking/573652_main.jpg");
 }
 .fullscreen {
-	height: 65vh;
+	height: 75vh;
+    min-height: 452px
     background-repeat: no-repeat;
     background-size: cover;
     -webkit-background-size: cover;
@@ -1099,7 +1202,7 @@ button img {
 }
 .tour__text {
 	font-weight: 400;
-	font-size: 18px;
+	font-size: 16px;
 }
 hr {
     width: 100%;
@@ -1117,6 +1220,7 @@ hr {
 strong {
 	font-weight: 600;
 }
+
 .tour__container {
 	position: relative;
 	width: 100%;
@@ -1153,11 +1257,11 @@ strong {
   opacity: 0.85;
 }
 .tour__field {
-	opacity: 1;
+	background: rgba(255, 255, 255, 0.8);
 }
 
 .tour__field:hover {
-  opacity: 0.85;
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .block__tour:hover {
@@ -1177,8 +1281,6 @@ strong {
     flex-direction: column;
     max-width: 100%;
     background: #FFFFFF;
-
-    /* margin: 0 15px; */
     padding: 0 15px;
 
 }
@@ -1276,7 +1378,233 @@ strong {
 .m-left-15 {
 	margin-left: 15px;
 }
+/* BOOKING */
+.booking {
+	font-weight: 600;
+	font-family: 'Montserrat', sans-serif;
+	position: absolute;
+    width: 75%;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 0 15px;
+    margin: 0;
+    transition: all 0.3s ease;
+}
+.main__booking {
+	min-height: 550px;
+	background-image: linear-gradient(180deg, rgba(68, 68, 68, 0.3) 9.42%,rgba(0, 0, 0, 0.1) 15.67%),url(../images/booking/gallery_2_45.jpg);
+	height: 60vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.booking__container {
+	width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+}
+.booking__container img {
+	width:62%;
+	right: 0;
+}
+.swiper-parallax, .parallax {
+  position: relative;
+}
+.parallax {
+  background: #eee;
+  margin: 50px 0;
+  padding: 0;
+  height: 80vh;
+}
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+.swiper-slide {
+  font-size: 18px;
+  color: #353535;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 40px 60px;
+}
+.slide--field-with-btn {
+	background: rgb(255, 255, 255, 0.6);
+    padding: 20px 20px 70px;
+}
+.slide--field {
+	background: rgb(255, 255, 255, 0.6);
+    padding: 20px;
+}
+.parallax-bg {
+  height: 80vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 130%;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center;
+}
+.parallax-bg1 {
 
+	background-image: url("../images/booking/4727956-kinsterna-hotel-east-peloponnese-greece.jpg");
+}
+.parallax-bg2 {
+	background-image: url("../images/booking/hotel-le-portetta-courchevel_23.jpg");
+}
+.parallax-bg3 {
+	background-image: url("../images/booking/Dollarphotoclub_52535035-1500x900.jpg");
+}
+.parallax-bg4 {
+
+	background-image: url("../images/booking/hotel-le-portetta-courchevel_15.jpg");
+}
+.parallax-bg5 {
+	background-image: url("../images/booking/hotel-le-portetta-courchevel_02.jpg");
+}
+.parallax-bg6 {
+	background-image: url("../images/booking/sdf.png");
+}
+.parallax-bg7 {
+
+	background-image: url("../images/booking/portetta-courchevel-france-prod.webp");
+}
+.parallax-bg8 {
+	background-image: url("../images/booking/gallery_2_45.jpg");
+}
+.parallax-bg9 {
+	background-image: url("../images/booking/153396384.jpg");
+}
+
+.parallax-bg10 {
+	background-image: url("../images/booking/w1920.h1200.cr0.au0.ac1.f-none.png");
+}
+.parallax-bg11 {
+	background-image: url("../images/booking/hotel-le-portetta-courchevel_22.jpg");
+}
+.parallax-bg12 {
+	background-image: url("../images/booking/Portetta-©30.jpg");
+}
+.s-title {
+  font-size: 35px;
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+}
+.swiper-slide .subtitle {
+  font-size: 30px;
+
+}
+.subtitles {
+	margin: 30px 0;
+}
+.swiper-slide .text {
+	margin: 20px 0;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 23px;
+}
+.relative {
+	position: relative;
+}
+.absolute {
+	position: absolute;
+}
+#slidebox{
+	max-width: 452px;
+	margin: 0 auto;
+	padding: 25px 15px;
+	background: rgb(255, 255, 255, 0.8);
+	position:relative;
+	bottom:0px;
+	right: -100vw;
+	line-height:18px;
+	z-index:999;
+	box-shadow:-3px 3px 15px #ddd;
+	-moz-box-shadow:-3px 3px 15px #ddd;
+	-webkit-box-shadow:-3px 3px 15px #ddd;
+	-o-box-shadow:-3px 3px 15px #ddd;
+}
+#sbox{
+	max-width: 452px;
+    margin: 0 auto;
+    padding: 25px 15px;
+    background: rgb(255, 255, 255, 0.8);
+    position: relative;
+    line-height: 18px;
+    left: 5vw;
+    z-index: 999;
+	box-shadow:-3px 3px 15px #ddd;
+	-moz-box-shadow:-3px 3px 15px #ddd;
+	-webkit-box-shadow:-3px 3px 15px #ddd;
+	-o-box-shadow:-3px 3px 15px #ddd;
+}
+
+#slidebox p{margin:0 0 10px 10px;padding:0px;font-size:15px;color:#666}
+#slidebox h4{color:#333;font-size:16px;margin:10px 20px 10px 10px}
+
+#sbox p{margin:0 0 10px 10px;padding:0px;font-size:15px;color:#666}
+#sbox h4{color:#333;font-size:18px;margin:10px 20px 10px 10px}
+
+.button--booking {
+	position: absolute;
+}
+.left-220 {
+	left:220px;
+}
+.block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+}
+.block-item{
+	display: flex;
+	flex-direction: column;
+	margin: 20px 0;
+    width: 33%;
+    align-items: center;
+}
+.block-item p{
+	font-size: 18px;
+    font-weight: 300;
+    max-width: 70%;
+}
+.block-item img {
+	width: 80px;
+	height: 80px;
+}
+.service-block-item {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.service-block-item img {
+	padding: 15px;
+}
+.chalet__container {
+	width: 100%;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+.chalet__container img {
+	width:62%;
+	right: 0;
+}
 /*** @media ***/
 @media (max-width: 1140px) {
 	.nav {
@@ -1358,7 +1686,7 @@ strong {
 }
 
 @media (max-width: 1000px) {
-	.main__title, .trekking__title {
+	.main__title, .title {
 		font-size: 80px;
 		padding-right: 30px;
 	}
@@ -1498,6 +1826,28 @@ strong {
 	.width-38 {
 		width: 100%;
 	}
+	#sbox {
+	    max-width: 80%;
+		left:auto;
+	}
+	.chalet__container {
+		flex-direction: column;
+	}
+	.chalet__container img {
+	    width: 80%;
+	    right: 0;
+	}
+	#slidebox {
+	    max-width: 80%;
+		left:auto;
+	}
+	.booking__container {
+		flex-direction: column;
+	}
+	.booking__container img {
+	    width: 80%;
+	    right: auto;
+	}
 }
 
 @media(max-width: 768px) {
@@ -1537,6 +1887,13 @@ strong {
 		width: 100%;
 	    height: 40vh;
 	}
+	.block-item {
+    	width: 50%;
+	}
+	.block-item img {
+		width: 50px;
+		height: 50px;
+	}
 }
 @media(max-width: 700px) {
 	.button--tour {
@@ -1545,6 +1902,13 @@ strong {
 	    width: 100%;
 	    bottom: auto;
 	    right: auto;
+	}
+	.button--booking {
+	    margin-bottom: 20px;
+	    position: relative;
+	    width: 100%;
+	    bottom: auto;
+	    left: auto;
 	}
 	.tour__text {
 		font-size: 16px;
@@ -1597,11 +1961,62 @@ strong {
 	.contacts {
 		margin: 130px 0;
 	}
-
+	.slide--field {
+     background: none;
+   	 padding: 0;
+	 color:white;
+	}
+	.slide--field-with-btn {
+	background: none;
+   	 padding: 0;
+	 color:white;
+	}
+	.s-title {
+	  font-size: 20px;
+	  text-align: center;
+	}
+	.swiper-slide .text {
+	margin: 0;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 18px;
+	}
+	.swiper-slide .subtitle {
+  		font-size: 18px;
+	}
+	.block-item p {
+    font-size: 14px;
+    font-weight: 300;
+    max-width: 85%;
+	}
+	.parallax-bg, .parallax {
+		height: 100vh;
+	}
+	.chalet__container img {
+	    width: 100%;
+	}
+	#slidebox {
+	    max-width: 100%;
+	}
+	.booking__container img {
+	    width: 100%;
+	}
+	.booking__container img {
+	    width: 100%;
+	}
+	#sbox {
+	    max-width: 100%;
+	}
+	.block-item {
+		margin:0;
+	}
+	.swiper-slide {
+		padding: 30px 40px;
+	}
 }
 @media(max-width: 575px) {
-	.trekking__title {
-		font-size: 60px;
+	.title {
+		font-size: 55px;
 		position: relative;
 		bottom: 20px;
 	}
@@ -1617,6 +2032,20 @@ strong {
 		width: 100%;
 	    height: 30vh;
 	}
+	.block-item {
+    width: 100%;
+	}
+	.block-item img {
+		width: 30px;
+		height: 30px;
+		margin-top: 15px;
+	}
+	p {
+		margin: 0.5em;
+	}
+	.service-block-item {
+    flex-direction: column;
+    text-align: center;
 }
 
 @media(max-width: 530px) {
@@ -1737,6 +2166,9 @@ strong {
 	 .season__subtitle {
 	        font-size: 20px;
 	}
+	.title {
+		color: white;
+	}
 }
 
 @media(max-width: 411px) {
@@ -1764,7 +2196,7 @@ strong {
 	}
 }
 @media (max-width: 390px) {
-	 .trekking__title {
+	.title {
 	  	font-size: 45px;
 	  }
 	   .tour__field {
@@ -1826,7 +2258,7 @@ strong {
 	}
 }
 @media (max-width: 330px) {
-	 .trekking__title {
+	 .title {
 	  	font-size: 40px;
 	  }
 }
