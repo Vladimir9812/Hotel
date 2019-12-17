@@ -16,7 +16,7 @@ $(function(){
             }
         ]
         });
-    
+
         $('.season--summer').slick({
             slidesToShow: 1,
             slidesToScroll: 1,
@@ -33,8 +33,8 @@ $(function(){
         ]
         });
         $('.reviews').slick({
-            dots: true, 
-            arrows: true, 
+            dots: true,
+            arrows: true,
             slidesToShow: 3,
             slidesToScroll: 1,
               responsive: [
@@ -62,10 +62,10 @@ $(function() {
 	var header = $('#header');
 	var intro = $('#main__page').innerHeight();
 	var scrollOffSet = 0;
-	
+
 	$(window).on("scroll", function() {
 		var scrollOffSet = $(this).scrollTop();
-		
+
 		if(scrollOffSet>=intro) {
 			header.addClass('header--fixed');
 		} else {
@@ -75,7 +75,7 @@ $(function() {
 
 $('#nav__toggle').on('click',function(event) {
 		event.preventDefault();
-		
+
     $(this).toggleClass('active');
 		$('#nav').toggleClass('active');
 		$('header').toggleClass('active');
@@ -96,6 +96,51 @@ $("[data-scroll]").on("click", function(event) {
 
     $("html, body").animate({
         scrollTop:  blockOffset
+    }, 1500);
+});
+
+//moving-block
+  jQuery(document).ready(function($) {
+    var mql = window.matchMedia('all and (max-width: 960px)');
+      if (mql.matches) {
+  $(window).scroll(function(){
+      if  ($(window).scrollTop() > 300)
+          $('#slidebox').animate({'right':'0vw'},800);
+
+      });
+      $('#slidebox .close').bind('click',function(){
+          $(this).parent().remove();
+      });
+      } else {
+         $(window).scroll(function(){
+      if  ($(window).scrollTop() > 300)
+          $('#slidebox').animate({'right':'3vw'},800);
+      });
+      }
+    });
+
+//title-animation
+  var mal = window.matchMedia('all and (max-width: 450px)');
+      if (!mal.matches) {
+    let title = document.querySelector(".title");
+  setTimeout(function () {
+    title.classList.add("active");
+  }, 1000);
+  };
+
+//swiper
+    var swiper = new Swiper('.swiper-container', {
+      speed: 600,
+      parallax: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
     }, 1500);
 });
 
